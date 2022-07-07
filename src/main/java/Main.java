@@ -7,15 +7,45 @@ public class Main {
         //영속성,DB 금지,파일 사용 가능
         //JSON 형식 추천
         //https://github.com/nette74/likelion_0707_ssg
+
+        /*
+        == 명언 SSG ==
+        명령) 등록
+        명언 : 현재를 사랑하라.
+        작가 : 작자미상
+        1번 명언이 등록되었습니다.
+                명령) 등록
+        명언 : 과거에 집착하지 마라.
+                작가 : 작자미상
+        2번 명언이 등록되었습니다.
+                명령) 목록
+        번호 / 작가 / 명언
+                ----------------------
+        2 / 작자미상 / 과거에 집착하지 마라.
+        1 / 작자미상 / 현재를 사랑하라.
+                명령) 삭제?id=1
+        1번 명언이 삭제되었습니다.
+                명령) 삭제?id=1
+        1번 명언은 존재하지 않습니다.
+        명령) 수정?id=2
+        2번 명언을 수정합니다.
+                기존 명언 : 과거에 집착하지 마라.
+                새 명언 : 미래와 과거에 집착하지 마라.
+        2번 명언이 수정되었습니다.
+                명령) 목록
+        번호 / 작가 / 명언
+                ----------------------
+        2 / 작자미상 / 미래와 과거에 집착하지 마라.
+        */
+
         //run();
         System.out.println("===명언 SSG==");
-
+        //전역 선언부
         Scanner sc = new Scanner(System.in);
-
         ArrayList<QuoteData> psudoDB = new ArrayList<>();
         int index = 0; //꼼수 , 가장 마지막 명언글의 번호
 
-
+        //입력 루프
         outer:
         while (true) {
             System.out.printf("명령) ");
@@ -24,27 +54,38 @@ public class Main {
                 case "등록":
                     //register();
                     System.out.print("명언을 입력하세요 :");
-                    String cmd2 = sc.nextLine().trim();
+                    String cmdQuote = sc.nextLine().trim();
                     System.out.print("작가를 입력하세요 :");
-                    String cmd3 = sc.nextLine().trim();
+                    String cmdName = sc.nextLine().trim();
 
-                    psudoDB.add(new QuoteData(cmd2,cmd3,++index));
+                    psudoDB.add(new QuoteData(cmdQuote,cmdName,index++));
                     break;
                 case "목록":
                     //listup();
                     for(QuoteData el : psudoDB){
                         el.print();
                     }
-                    System.out.println("목록출력");
-
                     break;
                 case "수정":
-                    System.out.println("수정합니다");
+                    //edit();
+                    System.out.print("?id = ");
+                    String idQuote1 = sc.nextLine().trim();
+                    QuoteData temp = psudoDB.get(Integer.parseInt(idQuote1));
+                    System.out.println("수정전 명언 :"+temp.quote);
+                    System.out.print("명언을 입력하세요 :");
+                    idQuote1 = sc.nextLine().trim();
+                    temp.edit(idQuote1);
+                    System.out.println("수정후 명언 :"+temp.quote);
                     break;
                 case "삭제":
-                    System.out.println("삭제합니다");
+                    //delete();
+                    System.out.print("?id = ");
+                    String idQuote2 = sc.nextLine().trim();
+                    psudoDB.remove(Integer.parseInt(idQuote2));
+
                     break;
                 case "종료":
+                    //quit();
                     System.out.println("종료합니다");
                     break outer;
             }
@@ -55,7 +96,7 @@ public class Main {
 }
 
 class QuoteData{
-    private String quote;
+    String quote;
     private String name;
     private int index;
     QuoteData(String q, String n,int i){
@@ -72,6 +113,11 @@ class QuoteData{
         System.out.println("작가 : "+ name);
 
     }
+    public void print2()
+    {
+        System.out.println("---------------------------------");
+        System.out.println(this.toString());
+    }
     @Override
     public String toString() {
         return "QuoteData{" +
@@ -84,6 +130,9 @@ class QuoteData{
     public void edit(String q, String n){
         quote=q;
         name=n;
+    }
+    public void edit(String q){
+        quote=q;
     }
 
 }
