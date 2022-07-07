@@ -6,13 +6,14 @@ public class Main {
 
         //영속성,DB 금지,파일 사용 가능
         //JSON 형식 추천
+        //https://github.com/nette74/likelion_0707_ssg
         //run();
         System.out.println("===명언 SSG==");
 
         Scanner sc = new Scanner(System.in);
 
         ArrayList<QuoteData> psudoDB = new ArrayList<>();
-        int index = 0; //꼼수
+        int index = 0; //꼼수 , 가장 마지막 명언글의 번호
 
 
         outer:
@@ -48,19 +49,22 @@ public class Main {
                     break outer;
             }
         }
+        // outer: block ends.
         sc.close();
     }
 }
+
 class QuoteData{
-    String quote;
-    String name;
-    int index;
+    private String quote;
+    private String name;
+    private int index;
     QuoteData(String q, String n,int i){
         quote=q;
         name=n;
         index=i;
     }
-    void print()
+
+    public void print()
     {
         System.out.println("---------------------------------");
         System.out.println("번호 : "+ Integer.toString(index));
@@ -68,4 +72,18 @@ class QuoteData{
         System.out.println("작가 : "+ name);
 
     }
+    @Override
+    public String toString() {
+        return "QuoteData{" +
+                "quote='" + quote + '\'' +
+                ", name='" + name + '\'' +
+                ", index=" + index +
+                '}';
+    }
+
+    public void edit(String q, String n){
+        quote=q;
+        name=n;
+    }
+
 }
