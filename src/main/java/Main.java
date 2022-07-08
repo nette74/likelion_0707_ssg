@@ -57,9 +57,9 @@ public class Main {
                     String cmdQuote = sc.nextLine().trim();
                     System.out.print("작가를 입력하세요 :");
                     String cmdName = sc.nextLine().trim();
-
                     psudoDB.add(new QuoteData(cmdQuote,cmdName,index++));
                     break;
+
                 case "목록":
                     //listed();
                     for(QuoteData el : psudoDB){
@@ -103,6 +103,7 @@ public class Main {
                             break;
                         }
                     }
+                    //수정과 삭제 방식 통일할 것..
                     break;
 
                 case "종료":
