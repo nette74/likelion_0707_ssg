@@ -61,7 +61,7 @@ public class Main {
                     psudoDB.add(new QuoteData(cmdQuote,cmdName,index++));
                     break;
                 case "목록":
-                    //listup();
+                    //listed();
                     for(QuoteData el : psudoDB){
                         el.print();
                     }
@@ -70,19 +70,47 @@ public class Main {
                     //edit();
                     System.out.print("?id = ");
                     String idQuote1 = sc.nextLine().trim();
+
+
+                    //search();
+                    QuoteData target=null;
+                    for(QuoteData el : psudoDB){
+                        if(el.index == Integer.parseInt(idQuote1))
+                            target = el;
+                        if(target != null)
+                            break;
+                    }
+
+
+                    /*
                     QuoteData temp = psudoDB.get(Integer.parseInt(idQuote1));
                     System.out.println("수정전 명언 :"+temp.quote);
                     System.out.print("명언을 입력하세요 :");
                     idQuote1 = sc.nextLine().trim();
                     temp.edit(idQuote1);
                     System.out.println("수정후 명언 :"+temp.quote);
+                    */
+
                     break;
                 case "삭제":
                     //delete();
                     System.out.print("?id = ");
                     String idQuote2 = sc.nextLine().trim();
-                    psudoDB.remove(Integer.parseInt(idQuote2));
+                    System.out.println("삭제합니다.");
 
+
+                    QuoteData targetD=null;
+                    for(QuoteData el : psudoDB){
+                        if(el.index == Integer.parseInt(idQuote2))
+                        {
+                            targetD = el;
+                            break;
+                        }
+                    }
+
+                    /*
+                    psudoDB.remove(Integer.parseInt(idQuote2));
+                    */
                     break;
                 case "종료":
                     //quit();
@@ -98,7 +126,7 @@ public class Main {
 class QuoteData{
     String quote;
     private String name;
-    private int index;
+    int index;
     QuoteData(String q, String n,int i){
         quote=q;
         name=n;
