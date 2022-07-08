@@ -1,9 +1,15 @@
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppTest {
-    public static void main(String[] args) {
-        int rs = 10+20;
-        assertEquals(30,rs);
+class AppTest {
 
+    @Test
+    void contextLoads() {
     }
+
+    @Test
+    public void hello() {
+        assertEquals(true, true);
+    }
+
 }

@@ -43,7 +43,7 @@ public class Main {
         //전역 선언부
         Scanner sc = new Scanner(System.in);
         ArrayList<QuoteData> psudoDB = new ArrayList<>();
-        int index = 0; //꼼수 , 가장 마지막 명언글의 번호
+        int index = 1; //꼼수 , 가장 마지막 명언글의 번호
 
         //입력 루프
         outer:
@@ -66,52 +66,45 @@ public class Main {
                         el.print();
                     }
                     break;
+
                 case "수정":
                     //edit();
                     System.out.print("?id = ");
                     String idQuote1 = sc.nextLine().trim();
-
-
                     //search();
                     QuoteData target=null;
                     for(QuoteData el : psudoDB){
-                        if(el.index == Integer.parseInt(idQuote1))
+                        if(el.index == Integer.parseInt(idQuote1)) {
                             target = el;
-                        if(target != null)
                             break;
+                        }
                     }
-
-
-                    /*
-                    QuoteData temp = psudoDB.get(Integer.parseInt(idQuote1));
-                    System.out.println("수정전 명언 :"+temp.quote);
-                    System.out.print("명언을 입력하세요 :");
+                    if(target == null) {
+                        System.out.println("id가 잘못 입력되었습니다.");
+                        break;
+                    }
+                    System.out.println("수정전 명언 : "+target.quote);
+                    System.out.print("명언을 입력하세요 : ");
                     idQuote1 = sc.nextLine().trim();
-                    temp.edit(idQuote1);
-                    System.out.println("수정후 명언 :"+temp.quote);
-                    */
-
+                    target.edit(idQuote1);
+                    System.out.println("수정후 명언 : "+target.quote);
                     break;
+
                 case "삭제":
                     //delete();
                     System.out.print("?id = ");
                     String idQuote2 = sc.nextLine().trim();
                     System.out.println("삭제합니다.");
-
-
-                    QuoteData targetD=null;
                     for(QuoteData el : psudoDB){
                         if(el.index == Integer.parseInt(idQuote2))
                         {
-                            targetD = el;
+                            System.out.println(el.index + "번 명언을 삭제합니다.");
+                            psudoDB.remove(el);
                             break;
                         }
                     }
-
-                    /*
-                    psudoDB.remove(Integer.parseInt(idQuote2));
-                    */
                     break;
+
                 case "종료":
                     //quit();
                     System.out.println("종료합니다");
