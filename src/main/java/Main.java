@@ -1,5 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -42,14 +48,15 @@ public class Main {
         2 / 작자미상 / 미래와 과거에 집착하지 마라.
         */
 
-
+        //TODO
         //Rq 클래스 도입
+        //프로그램 시작시 Json 에서 Load();
 
         //run();
         System.out.println("===명언 SSG==");
         //전역 선언부
         Scanner sc = new Scanner(System.in);
-        ArrayList<QuoteData> psudoDB = new ArrayList<>();
+        ArrayList<QuoteData> pseudoDB = new ArrayList<>();
         int index = 1; //꼼수 , 가장 마지막 명언글의 번호
 
         //입력 루프
@@ -64,12 +71,12 @@ public class Main {
                     String cmdQuote = sc.nextLine().trim();
                     System.out.print("작가를 입력하세요 :");
                     String cmdName = sc.nextLine().trim();
-                    psudoDB.add(new QuoteData(cmdQuote,cmdName,index++));
+                    pseudoDB.add(new QuoteData(cmdQuote,cmdName,index++));
                     break;
 
                 case "목록":
                     //listed();
-                    for(QuoteData el : psudoDB){
+                    for(QuoteData el : pseudoDB){
                         el.print();
                     }
                     break;
@@ -80,7 +87,7 @@ public class Main {
                     String idQuote1 = sc.nextLine().trim();
                     //search();
                     QuoteData target=null;
-                    for(QuoteData el : psudoDB){
+                    for(QuoteData el : pseudoDB){
                         if(el.index == Integer.parseInt(idQuote1)) {
                             target = el;
                             break;
@@ -93,7 +100,7 @@ public class Main {
                     System.out.println("수정전 명언 : "+target.quote);
                     System.out.print("명언을 입력하세요 : ");
                     idQuote1 = sc.nextLine().trim();
-                    target.edit(idQuote1);
+                    target.quote = idQuote1;
                     System.out.println("수정후 명언 : "+target.quote);
                     break;
 
@@ -102,11 +109,11 @@ public class Main {
                     boolean deleteDone = false;
                     System.out.print("?id = ");
                     String idQuote2 = sc.nextLine().trim();
-                    for(QuoteData el : psudoDB){
+                    for(QuoteData el : pseudoDB){
                         if(el.index == Integer.parseInt(idQuote2))
                         {
                             System.out.println(el.index + "번 명언을 삭제합니다.");
-                            psudoDB.remove(el);
+                            pseudoDB.remove(el);
                             deleteDone=true;
                             break;
                         }
@@ -119,15 +126,17 @@ public class Main {
 
                 case "빌드":
                     //build();, data.json 만들기
-                    String JsonData="";
-                    JsonData=JsonData+"["+System.lineSeparator();
-                    for(QuoteData el: psudoDB){
-                        JsonData=JsonData+el.toJson();
-                        JsonData=JsonData+","+System.lineSeparator();
+                    String jsonData="";
+                    jsonData=jsonData+"["+System.lineSeparator();
+                    for(QuoteData el: pseudoDB){
+                        jsonData=jsonData+el.toJson();
+                        jsonData=jsonData+","+System.lineSeparator();
                     }
-                    JsonData = JsonData.substring(0, JsonData.length()-2);
-                    JsonData = JsonData+System.lineSeparator()+"]";
-                    System.out.println(JsonData);
+                    jsonData = jsonData.substring(0, jsonData.length()-3);
+                    jsonData = jsonData+System.lineSeparator()+"]";
+
+                    System.out.println(jsonData);
+                    FileIO.writeFile(jsonData);
 
 
                 case "종료":
@@ -176,17 +185,21 @@ class QuoteData{
         return "{" + System.lineSeparator() +
                 "\"id\":"+index+","+System.lineSeparator() +
                 "\"content\":"+"\""+quote+"\""+","+System.lineSeparator() +
-                "\"author\":"+"\""+name+"\""+","+System.lineSeparator() +
+                "\"author\":"+"\""+name+"\""+System.lineSeparator() +
                 "}"
                 ;
     }
 
-    public void edit(String q, String n){
-        quote=q;
-        name=n;
-    }
-    public void edit(String q){
-        quote=q;
-    }
+}
 
+class FileIO{
+    static void writeFile(String data){
+        try{
+            Path path = Paths.get("data.json");
+            Files.write(path, data.getBytes());
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }
