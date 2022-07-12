@@ -1,3 +1,5 @@
+package com.ll.exam;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,7 +60,7 @@ public class Main {
         */
 
         //TODO
-        //Rq 클래스 도입
+        //com.ll.exam.Rq 클래스 도입
         //프로그램 시작시 Json 에서 Load();
 
         //run();
@@ -186,7 +188,7 @@ class QuoteData{
     }
     @Override
     public String toString() {
-        return "QuoteData{" +
+        return "com.ll.exam.QuoteData{" +
                 "quote='" + quote + '\'' +
                 ", name='" + name + '\'' +
                 ", index=" + index +
