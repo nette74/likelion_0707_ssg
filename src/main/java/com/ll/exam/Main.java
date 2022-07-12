@@ -1,7 +1,9 @@
 package com.ll.exam;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import java.nio.file.Files;
@@ -18,8 +20,9 @@ public class Main {
 
 
 
+
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //영속성,DB 금지,파일 사용 가능
         //JSON 형식 추천
@@ -68,8 +71,19 @@ public class Main {
         //전역 선언부
         Scanner sc = new Scanner(System.in);
         ArrayList<QuoteData> pseudoDB = new ArrayList<>();
-        Load();
+
+
+        //loadParsing();
+        String rawdata = FileIO.readFile();
+
+
+
+        System.out.println(rawdata);
+
+
+
         int index = 1; //꼼수 , 가장 마지막 명언글의 번호
+        //이거 어떻게 함? 이것때문에 해시맵으로 바꿔야 할까..
 
         //입력 루프
         outer:
@@ -215,7 +229,16 @@ class FileIO{
             e.printStackTrace();
         }
     }
-    static void readFile(ArrayList db){
+    static String readFile()throws IOException{
 
+        Path path = Paths.get("data.json");
+        List<String> lines = Files.readAllLines(path);
+        String s = "";
+        for (String line : lines) {
+            s += line + "\n";
+        }
+
+
+        return s;
     }
 }
