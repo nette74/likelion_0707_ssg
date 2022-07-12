@@ -92,19 +92,26 @@ public class Main {
 
                 case "삭제":
                     //delete();
+                    boolean deleteDone = false;
                     System.out.print("?id = ");
                     String idQuote2 = sc.nextLine().trim();
-                    System.out.println("삭제합니다.");
                     for(QuoteData el : psudoDB){
                         if(el.index == Integer.parseInt(idQuote2))
                         {
                             System.out.println(el.index + "번 명언을 삭제합니다.");
                             psudoDB.remove(el);
+                            deleteDone=true;
                             break;
                         }
                     }
+                    if(deleteDone=false)
+                        System.out.println(idQuote2+"번 명언은 존재하지 않습니다. ");
+
                     //수정과 삭제 방식 통일할 것..
                     break;
+
+                case "빌드":
+                    //build();, data.json 만들기
 
                 case "종료":
                     //quit();
@@ -147,6 +154,14 @@ class QuoteData{
                 ", name='" + name + '\'' +
                 ", index=" + index +
                 '}';
+    }
+    public String toJson(){
+        return "{" + System.lineSeparator() +
+                "\"id\":"+"\""+index+"\""+System.lineSeparator() +
+                "\"content\":"+"\""+quote+"\""+System.lineSeparator() +
+                "\"author\":"+"\""+name+"\""+System.lineSeparator() +
+                "}"
+                ;
     }
 
     public void edit(String q, String n){
