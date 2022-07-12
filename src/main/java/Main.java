@@ -8,6 +8,15 @@ import java.nio.file.Paths;
 
 
 public class Main {
+
+    static void Load()
+    {
+        //Json 읽어서 파싱해서
+        //array에 저장
+
+
+
+    }
     public static void main(String[] args) {
 
         //영속성,DB 금지,파일 사용 가능
@@ -57,6 +66,7 @@ public class Main {
         //전역 선언부
         Scanner sc = new Scanner(System.in);
         ArrayList<QuoteData> pseudoDB = new ArrayList<>();
+        Load();
         int index = 1; //꼼수 , 가장 마지막 명언글의 번호
 
         //입력 루프
@@ -148,6 +158,7 @@ public class Main {
         // outer: block ends.
         sc.close();
     }
+
 }
 
 class QuoteData{
@@ -201,5 +212,8 @@ class FileIO{
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+    static void readFile(ArrayList db){
+
     }
 }
