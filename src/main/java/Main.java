@@ -8,6 +8,10 @@ public class Main {
         //JSON 형식 추천
         //https://github.com/nette74/likelion_0707_ssg
 
+        //https://wiken.io/ken/8069
+        //https://wiken.io/ken/8112
+        //https://github.com/jhs512/java_ssg_2022_07_07
+
         /*
         == 명언 SSG ==
         명령) 등록
@@ -37,6 +41,9 @@ public class Main {
                 ----------------------
         2 / 작자미상 / 미래와 과거에 집착하지 마라.
         */
+
+
+        //Rq 클래스 도입
 
         //run();
         System.out.println("===명언 SSG==");
@@ -112,6 +119,16 @@ public class Main {
 
                 case "빌드":
                     //build();, data.json 만들기
+                    String JsonData="";
+                    JsonData=JsonData+"["+System.lineSeparator();
+                    for(QuoteData el: psudoDB){
+                        JsonData=JsonData+el.toJson();
+                        JsonData=JsonData+","+System.lineSeparator();
+                    }
+                    JsonData = JsonData.substring(0, JsonData.length()-2);
+                    JsonData = JsonData+System.lineSeparator()+"]";
+                    System.out.println(JsonData);
+
 
                 case "종료":
                     //quit();
@@ -157,9 +174,9 @@ class QuoteData{
     }
     public String toJson(){
         return "{" + System.lineSeparator() +
-                "\"id\":"+"\""+index+"\""+System.lineSeparator() +
-                "\"content\":"+"\""+quote+"\""+System.lineSeparator() +
-                "\"author\":"+"\""+name+"\""+System.lineSeparator() +
+                "\"id\":"+index+","+System.lineSeparator() +
+                "\"content\":"+"\""+quote+"\""+","+System.lineSeparator() +
+                "\"author\":"+"\""+name+"\""+","+System.lineSeparator() +
                 "}"
                 ;
     }
