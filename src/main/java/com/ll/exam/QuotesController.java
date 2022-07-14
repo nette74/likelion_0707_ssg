@@ -11,16 +11,18 @@ public class QuotesController {
         System.out.print("작가를 입력하세요 :");
         String cmdName = sc.nextLine().trim();
         repo.add(cmdQuote,cmdName);
+
     }
     void listing(){
-        Scanner sc = new Scanner(System.in);
         repo.listing();
+
 
     }
     int search(){
         Scanner sc = new Scanner(System.in);
         System.out.print("?id = ");
         String idQuote = sc.nextLine().trim();
+
 
         return Integer.parseInt(idQuote);
 

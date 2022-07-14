@@ -14,7 +14,7 @@ public class QuotesRepository {
     void firsrLoad(){}
 
     void add(String quote,String name){
-        pseudoDB.add(new QuoteData(quote,name, lastIndex++);
+        pseudoDB.add(new QuoteData(quote,name, lastIndex++));
 
     }
     void listing(){
@@ -31,7 +31,7 @@ public class QuotesRepository {
         String newQuote = sc.nextLine().trim();
         target.quote = newQuote;
         System.out.println("수정후 명언 : "+target.quote);
-        sc.close();
+
         return;
     }
     void delete(int index){
