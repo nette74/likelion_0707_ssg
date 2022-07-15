@@ -15,10 +15,9 @@ public class QuotesController {
     }
     void listing(){
         repo.listing();
-
-
     }
     int search(){
+        //search() 레포에 있어야 할 것 같은데.
         Scanner sc = new Scanner(System.in);
         System.out.print("?id = ");
         String idQuote = sc.nextLine().trim();
@@ -28,6 +27,7 @@ public class QuotesController {
         return Integer.parseInt(idQuote);
 
     }
+
     void edit(){
         int id = search();
         repo.edit(id);

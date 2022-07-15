@@ -1,5 +1,7 @@
 package com.ll.exam;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,12 +78,23 @@ public class QuotesRepository {
         for(String eachPath : fileNames) {
             loadedData.add( Util.json.jsonToMapFromFile(eachPath));
             //if(lastIndex< loadedData.set(loadedData.size()-1, ))
-            //lastindex 수를 늘려줘야 함.
+            //last-index 변수를 늘려줘야 함.
 
         }
-        return null;
+        //lastIndex = loadedData.size();
+        return loadedData;
     }
-    void mapToDB(){
+
+    void mapToDB(@NotNull ArrayList<Map> loadedData){
+        for(Map Data : loadedData)
+        {
+            pseudoDB.add(
+                    new QuoteData(
+                            (String) Data.get("content"), (String) Data.get("author"), (Integer) Data.get("id")) );
+            if ( lastIndex<(Integer) Data.get("id"))
+                lastIndex = (Integer) Data.get("id");
+        }
+    }
 
     }
 
