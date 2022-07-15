@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class QuotesRepository {
@@ -53,6 +54,35 @@ public class QuotesRepository {
             return null;
         }
         return target;
+    }
+    //전부 저장하기.
+    void saveAllToFile(){
+        Util.file.mkdir("data");
+        for (QuoteData el : pseudoDB) {
+            Util.file.saveToFile("data/" +el.index+".json" , el.toJson());
+            System.out.println(":: data/" +el.index+".json" + " 이 생성되었습니다.");
+        }
+    }
+    //큰 data.json 생성
+    void buildTotalFile(){
+
+
+    }
+
+    //파일을 훑어서 맵을 반환.
+    ArrayList<Map> loadAllFromFile(){
+        ArrayList<Map> loadedData = new ArrayList<>();
+        List<String> fileNames = Util.file.getFileNamesFromDir("data");
+        for(String eachPath : fileNames) {
+            loadedData.add( Util.json.jsonToMapFromFile(eachPath));
+            //if(lastIndex< loadedData.set(loadedData.size()-1, ))
+            //lastindex 수를 늘려줘야 함.
+
+        }
+        return null;
+    }
+    void mapToDB(){
+
     }
 
 

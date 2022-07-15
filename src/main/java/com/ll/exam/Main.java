@@ -12,14 +12,6 @@ import java.nio.file.Paths;
 
 
 public class Main {
-
-    static void Load()
-    {
-        //Json 읽어서 파싱해서
-        //array 에 저장
-
-
-    }
     public static void main(String[] args) throws IOException {
 
         //영속성,DB 금지,파일 사용 가능

@@ -22,6 +22,7 @@ public class QuotesController {
         Scanner sc = new Scanner(System.in);
         System.out.print("?id = ");
         String idQuote = sc.nextLine().trim();
+        // rq 로 나누면 좋지만 일단 진행.
 
 
         return Integer.parseInt(idQuote);
@@ -36,6 +37,10 @@ public class QuotesController {
         repo.delete(id);
     }
     void build(){
-
+        repo.saveAllToFile();
     }
+    void load(){
+        //파일 불러오는 코드.
+    }
+
 }

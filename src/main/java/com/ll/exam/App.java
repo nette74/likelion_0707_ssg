@@ -19,10 +19,10 @@ public class App {
         //System.out.println(rawdata);
 
 
-        int index = 1; //꼼수 , 가장 마지막 명언글의 번호
-        //이거 어떻게 함? 이것때문에 해시맵으로 바꿔야 할까..
+        //int index = 1; //꼼수 , 가장 마지막 명언글의 번호
 
         //입력 루프
+        controller.load();
         Scanner sc = new Scanner(System.in);
         outer:
         while (true) {
@@ -48,6 +48,7 @@ public class App {
 
                 case "빌드":
                     //build();, data.json 만들기
+                   /*
                     String jsonData="";
                     jsonData=jsonData+"["+System.lineSeparator();
                     for(QuoteData el: pseudoDB){
@@ -59,6 +60,10 @@ public class App {
 
                     System.out.println(jsonData);
                     FileIO.writeFile(jsonData);
+                    break;
+                    */
+                    controller.build();
+                    break;
 
                 case "종료":
                     //quit();
