@@ -1,5 +1,7 @@
 package com.ll.exam;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class QuotesController {
@@ -40,6 +42,8 @@ public class QuotesController {
         repo.saveAllToFile();
     }
     void load(){
+        ArrayList<Map> tempDatum = repo.loadAllFromFile();
+        repo.mapToDB(tempDatum);
         //파일 불러오는 코드.
     }
 

@@ -68,6 +68,20 @@ public class QuotesRepository {
     //큰 data.json 생성
     void buildTotalFile(){
 
+                    /*
+                    String jsonData="";
+                    jsonData=jsonData+"["+System.lineSeparator();
+                    for(QuoteData el: pseudoDB){
+                        jsonData=jsonData+el.toJson();
+                        jsonData=jsonData+","+System.lineSeparator();
+                    }
+                    jsonData = jsonData.substring(0, jsonData.length()-3);
+                    jsonData = jsonData+System.lineSeparator()+"]";
+
+                    System.out.println(jsonData);
+                    FileIO.writeFile(jsonData);
+                    break;
+                    */
 
     }
 
@@ -76,7 +90,7 @@ public class QuotesRepository {
         ArrayList<Map> loadedData = new ArrayList<>();
         List<String> fileNames = Util.file.getFileNamesFromDir("data");
         for(String eachPath : fileNames) {
-            loadedData.add( Util.json.jsonToMapFromFile(eachPath));
+            loadedData.add( Util.json.jsonToMapFromFile("data/"+eachPath));
             //if(lastIndex< loadedData.set(loadedData.size()-1, ))
             //last-index 변수를 늘려줘야 함.
 
@@ -99,7 +113,7 @@ public class QuotesRepository {
     }
 
 
-}
+
 class QuoteData{
     String quote;
     private String name;

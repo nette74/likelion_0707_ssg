@@ -48,20 +48,7 @@ public class App {
 
                 case "빌드":
                     //build();, data.json 만들기
-                   /*
-                    String jsonData="";
-                    jsonData=jsonData+"["+System.lineSeparator();
-                    for(QuoteData el: pseudoDB){
-                        jsonData=jsonData+el.toJson();
-                        jsonData=jsonData+","+System.lineSeparator();
-                    }
-                    jsonData = jsonData.substring(0, jsonData.length()-3);
-                    jsonData = jsonData+System.lineSeparator()+"]";
 
-                    System.out.println(jsonData);
-                    FileIO.writeFile(jsonData);
-                    break;
-                    */
                     controller.build();
                     break;
 
@@ -73,6 +60,7 @@ public class App {
         }
         // outer: block ends.
         sc.close();
+        controller.build();
 
     }
 }
