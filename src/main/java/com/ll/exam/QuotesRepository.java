@@ -105,9 +105,10 @@ public class QuotesRepository {
             pseudoDB.add(
                     new QuoteData(
                             (String) Data.get("content"), (String) Data.get("author"), (Integer) Data.get("id")) );
-            if ( lastIndex<(Integer) Data.get("id"))
-                lastIndex = (Integer) Data.get("id");
+            if ( lastIndex<=(Integer) Data.get("id"))
+                lastIndex = ((Integer) Data.get("id"))+1;
         }
+
     }
 
     }

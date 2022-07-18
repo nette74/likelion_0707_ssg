@@ -24,8 +24,6 @@ public class QuotesController {
         System.out.print("?id = ");
         String idQuote = sc.nextLine().trim();
         // rq 로 나누면 좋지만 일단 진행.
-
-
         return Integer.parseInt(idQuote);
 
     }
@@ -44,6 +42,7 @@ public class QuotesController {
     void load(){
         ArrayList<Map> tempDatum = repo.loadAllFromFile();
         repo.mapToDB(tempDatum);
+        Util.file.deleteDir("data");
         //파일 불러오는 코드.
     }
 
